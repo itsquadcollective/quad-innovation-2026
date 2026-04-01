@@ -480,8 +480,11 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:28px 64p
   //  !! IMPORTANT: Replace this URL with your server's address
   //  When running locally:   http://localhost:3000/register
   //  When deployed (Render): https://your-app.onrender.com/register
+  //  NOTE: the POST must include the `/register` path — keep that here
   // ============================================================
-  const BACKEND_URL = 'https://quad-backend-jbkf.onrender.com';
+  // Default: use Vercel serverless function at /api/register when deployed
+  // For local testing use: http://localhost:3000/register
+  const BACKEND_URL = '/api/register';
 
   function showToast(message, type = 'success') {
     const toast = document.getElementById('toast');
@@ -547,7 +550,23 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:28px 64p
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      if (!response.ok) {
+        const text = await response.text().catch(() => null);
+        showToast(`Server error: ${response.status}`, 'error');
+        btn.disabled = false;
+        btn.textContent = 'Submit Registration →';
+        return;
+      }
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        showToast('Unexpected server response. Please try again later.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Submit Registration →';
+        return;
+      }
 
       if (result.success) {
         // Hide the form, show success screen
