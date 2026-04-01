@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quad Innovation 2026 — The Quad Collective</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#03081b;--ink2:#070d26;--blue:#1d40ae;--glow:#3b82f6;--glow2:#60a5fa;
+  --white:#ffffff;--off:#dce6f8;--muted:#7b94c4;--gold:#f0b429;
+  --border:rgba(59,130,246,0.15);--success:#10b981;--error:#ef4444;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:'Barlow',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(3,8,27,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{height:34px;object-fit:contain}
+.nav-logo-fallback{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--glow);letter-spacing:.12em;display:none}
+.nav-right{display:flex;align-items:center;gap:36px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--muted);font-size:12.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-btn{background:var(--glow);color:var(--white);padding:9px 22px;border-radius:3px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-btn:hover{background:var(--glow2)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.38}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,8,27,.25) 0%,rgba(3,8,27,.5) 45%,rgba(3,8,27,.92) 80%,var(--ink) 100%);z-index:1}
+.hero-grid-overlay{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);background-size:60px 60px}
+.hero-inner{position:relative;z-index:2;padding:0 64px 80px;max-width:1200px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--glow2);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;border-radius:2px;margin-bottom:28px}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--glow2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,11vw,130px);line-height:.9;letter-spacing:.015em;margin-bottom:24px}
+h1.hero-title em{color:var(--glow);font-style:normal}
+.hero-desc{font-size:clamp(16px,2vw,19px);color:var(--off);font-weight:300;max-width:520px;margin-bottom:12px;line-height:1.6}
+.hero-date{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:36px}
+.hero-date strong{color:var(--gold)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+.btn-main{background:var(--glow);color:var(--white);padding:15px 38px;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;text-decoration:none;transition:background .2s,transform .15s;display:inline-block}
+.btn-main:hover{background:var(--glow2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--white);padding:15px 38px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);border-radius:3px;text-decoration:none;transition:border-color .2s,background .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--glow2);background:rgba(59,130,246,.08)}
+.hero-stats{display:flex;gap:0;border-top:1px solid var(--border);padding-top:32px}
+.hstat{padding:0 40px 0 0;border-right:1px solid var(--border);margin-right:40px}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--glow2);line-height:1}
+.hstat-l{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.section{padding:100px 64px}
+.container{max-width:1100px;margin:0 auto}
+.label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--glow2);margin-bottom:14px}
+h2.big{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,78px);line-height:.92;letter-spacing:.02em;margin-bottom:20px}
+.rule{width:44px;height:2px;background:var(--glow);margin-bottom:22px}
+.lead{font-size:17px;color:var(--muted);max-width:520px;line-height:1.65;font-weight:300}
+.alt-bg{background:var(--ink2)}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:52px}
+.who-card{padding:34px 28px;background:rgba(255,255,255,.02);border:1px solid var(--border);transition:background .2s,border-color .2s}
+.who-card:hover{background:rgba(59,130,246,.05);border-color:rgba(59,130,246,.3)}
+.who-icon{width:44px;height:44px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.who-h{font-size:15px;font-weight:600;margin-bottom:6px}
+.who-p{font-size:13px;color:var(--muted);line-height:1.55}
+.prizes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+@media(max-width:720px){.prizes-grid{grid-template-columns:1fr}}
+.prize{padding:44px 36px;border:1px solid var(--border);transition:border-color .25s}
+.prize:hover{border-color:rgba(59,130,246,.3)}
+.prize.gold{border-color:rgba(240,180,41,.25);background:linear-gradient(145deg,rgba(7,13,38,.95),rgba(28,18,4,.9))}
+.prize.gold:hover{border-color:rgba(240,180,41,.5)}
+.prize-place{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+.prize.gold .prize-place{color:var(--gold)}
+.prize.silver .prize-place{color:var(--muted)}
+.prize.bronze .prize-place{color:#b06020}
+.prize-amt{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;margin-bottom:6px}
+.prize.gold .prize-amt{color:var(--gold)}
+.prize.silver .prize-amt{color:var(--off)}
+.prize.bronze .prize-amt{color:#cd7f32}
+.prize-name{font-size:13px;color:var(--muted);margin-bottom:24px}
+.prize-list{display:flex;flex-direction:column;gap:8px}
+.prize-item{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid rgba(59,130,246,.08)}
+.pdot{width:4px;height:4px;border-radius:50%;background:var(--glow2);flex-shrink:0}
+.tl-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px}
+@media(max-width:780px){.tl-wrap{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.tl-wrap{grid-template-columns:1fr}}
+.tl{padding:28px 24px;border:1px solid var(--border)}
+.tl.now{border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.06)}
+.tl-d{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--glow2);margin-bottom:8px}
+.tl-e{font-size:15px;font-weight:600;margin-bottom:6px}
+.tl-n{font-size:12px;color:var(--muted);line-height:1.5}
+.tl-live{display:inline-block;margin-top:10px;background:var(--glow);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+.steps{display:flex;flex-direction:column;max-width:680px;margin-top:52px}
+.step{display:flex;gap:28px;padding:28px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgba(59,130,246,.2);line-height:1;min-width:52px}
+.step-h{font-size:15px;font-weight:600;margin-bottom:6px}
+.step-p{font-size:14px;color:var(--muted);line-height:1.6}
+.reg-split{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;margin-top:52px;align-items:start}
+@media(max-width:760px){.reg-split{grid-template-columns:1fr}}
+.price-n{font-family:'Bebas Neue',sans-serif;font-size:80px;color:var(--glow2);line-height:1}
+.price-l{font-size:13px;color:var(--muted);margin-top:4px;margin-bottom:36px}
+.reg-perks{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.perk{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--off)}
+.perk-dot{width:6px;height:6px;border-radius:50%;background:var(--glow2);flex-shrink:0}
+.pay-box{background:rgba(7,13,38,.8);border:1px solid var(--border);padding:32px}
+.pay-box-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--glow2);margin-bottom:20px}
+.pay-link-btn{display:block;background:var(--glow);color:var(--white);text-align:center;padding:16px;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;text-decoration:none;margin-bottom:14px;transition:background .2s}
+.pay-link-btn:hover{background:var(--glow2)}
+.pay-note{font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
+.pay-steps{display:flex;flex-direction:column;margin-top:24px}
+.pay-s{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--border)}
+.pay-s-n{width:24px;height:24px;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:var(--glow2);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.pay-s-h{font-size:13px;font-weight:600;margin-bottom:3px}
+.pay-s-p{font-size:12px;color:var(--muted);line-height:1.5}
+.form-wrap{max-width:720px;margin-top:52px}
+.form-block{background:rgba(3,8,27,.8);border:1px solid var(--border);padding:32px 36px;margin-bottom:2px}
+.form-block-head{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.form-block-letter{font-family:'Bebas Neue',sans-serif;font-size:40px;color:rgba(59,130,246,.3);line-height:1}
+.form-block-title{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--off)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field-full{grid-column:1/-1}
+.flabel{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.finput{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(59,130,246,.18);color:var(--white);font-family:'Barlow',sans-serif;font-size:13.5px;padding:10px 14px;border-radius:2px;outline:none;transition:border-color .2s}
+.finput:focus{border-color:var(--glow2)}
+.finput::placeholder{color:rgba(123,148,196,.35)}
+select.finput option{background:var(--ink2)}
+textarea.finput{resize:vertical}
+.check-group{display:flex;flex-direction:column;gap:10px}
+.check-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);cursor:pointer}
+.check-row input[type=checkbox]{margin-top:2px;accent-color:var(--glow2)}
+
+/* Submit button states */
+.submit-btn{width:100%;padding:16px;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--glow);color:var(--white);border:none;border-radius:3px;cursor:pointer;font-family:'Barlow',sans-serif;transition:background .2s,opacity .2s}
+.submit-btn:hover{background:var(--glow2)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* Toast notification */
+.toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
+  padding:16px 28px;border-radius:4px;font-size:14px;font-weight:600;
+  opacity:0;transition:all .3s;z-index:999;pointer-events:none;max-width:480px;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success);color:var(--white)}
+.toast.error{background:var(--error);color:var(--white)}
+
+/* Success screen */
+.success-screen{
+  display:none;text-align:center;padding:60px 40px;
+  background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);
+  border-radius:4px;margin-top:52px;max-width:600px;
+}
+.success-screen.show{display:block}
+.success-icon{font-size:48px;margin-bottom:20px}
+.success-id{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--glow2);margin:16px 0 8px}
+.success-id-label{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+
+.fcta{background:linear-gradient(135deg,rgba(10,22,65,.97),rgba(3,8,27,1));border-top:1px solid var(--border);text-align:center;padding:100px 40px}
+.fcta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,108px);line-height:.9;margin-bottom:22px;letter-spacing:.02em}
+.fcta h2 em{color:var(--glow2);font-style:normal}
+.fcta p{font-size:17px;color:var(--muted);margin-bottom:38px;font-weight:300}
+.fcta-deadline{font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-top:20px}
+footer{background:var(--ink);border-top:1px solid var(--border);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.foot-brand{font-size:12px;color:var(--muted)}
+.foot-brand strong{color:var(--white)}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:11.5px;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--glow2)}
+@media(max-width:700px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero-inner{padding:0 24px 60px}.section{padding:72px 24px}
+  footer{padding:24px}.hero-stats{flex-wrap:wrap}
+  .hstat{padding:0 20px 0 0;margin-right:20px}
+  .fields{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="quad logo pic.jpeg" class="nav-logo" alt="The Quad"
+       onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'">
+  <span class="nav-logo-fallback">THE QUAD</span>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#prizes">Prizes</a>
+      <a href="#timeline">Dates</a>
+      <a href="#register">Register</a>
+    </div>
+    <a href="#register" class="nav-btn">Register Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="Untitled_design.png" class="hero-img" alt="" onerror="this.style.opacity='0'">
+  <div class="hero-gradient"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>The Quad Collective Presents</div>
+    <h1 class="hero-title">QUAD<br><em>INNOVATION</em><br>2026</h1>
+    <p class="hero-desc">Nigeria's boldest youth-led tech and innovation competition. Bring your idea. Build your future.</p>
+    <p class="hero-date">Registration Open: <strong>April 1 – May 31, 2026</strong></p>
+    <div class="hero-ctas">
+      <a href="#register" class="btn-main">Register Now — ₦2,500</a>
+      <a href="#prizes" class="btn-ghost">View Prizes</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">₦350K</div><div class="hstat-l">Prize Pool</div></div>
+      <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Prize Tiers</div></div>
+      <div class="hstat"><div class="hstat-n">June 7</div><div class="hstat-l">Competition Day</div></div>
+      <div class="hstat"><div class="hstat-n">₦2,500</div><div class="hstat-l">Registration Fee</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="label">Who Can Apply</div>
+    <h2 class="big">BUILT FOR<br>YOUNG BUILDERS</h2>
+    <div class="rule"></div>
+    <p class="lead">You don't need a finished product — just a real problem, a bold idea, and the drive to see it through. Beginners are welcome.</p>
+    <div class="who-grid">
+      <div class="who-card"><div class="who-icon">🎓</div><div class="who-h">University Students</div><div class="who-p">Any undergraduate at a Nigerian university with a valid student ID.</div></div>
+      <div class="who-card"><div class="who-icon">🏫</div><div class="who-h">Polytechnic Students</div><div class="who-p">Enrolled students at any accredited Nigerian polytechnic.</div></div>
+      <div class="who-card"><div class="who-icon">💡</div><div class="who-h">Young Innovators</div><div class="who-p">Self-taught builders and creators aged 16–30 with a tech or innovation idea.</div></div>
+      <div class="who-card"><div class="who-icon">🌱</div><div class="who-h">First-Timers Welcome</div><div class="who-p">No prior competition experience needed. We value ideas, not trophies.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg" id="prizes">
+  <div class="container">
+    <div class="label">Prize Structure</div>
+    <h2 class="big">WIN<br><span style="color:var(--gold)">BIG.</span></h2>
+    <div class="rule" style="background:var(--gold)"></div>
+    <p class="lead">₦350,000 in total prizes. Three placements. One competition that could change everything.</p>
+    <div class="prizes-grid">
+      <div class="prize gold">
+        <div class="prize-place">🥇 1st Place — Champion</div>
+        <div class="prize-amt">₦200K</div>
+        <div class="prize-name">Quad Innovation 2026 Champion</div>
+        <div class="prize-list">
+          <div class="prize-item"><span class="pdot"></span>₦200,000 cash prize</div>
+          <div class="prize-item"><span class="pdot"></span>Featured across all Quad platforms</div>
+          <div class="prize-item"><span class="pdot"></span>Mentorship opportunity</div>
+          <div class="prize-item"><span class="pdot"></span>Champion certificate &amp; trophy</div>
+        </div>
+      </div>
+      <div class="prize silver">
+        <div class="prize-place">🥈 2nd Place — Runner-Up</div>
+        <div class="prize-amt">₦100K</div>
+        <div class="prize-name">Excellence Award</div>
+        <div class="prize-list">
+          <div class="prize-item"><span class="pdot"></span>₦100,000 cash prize</div>
+          <div class="prize-item"><span class="pdot"></span>Quad Collective network access</div>
+          <div class="prize-item"><span class="pdot"></span>Certificate of merit</div>
+        </div>
+      </div>
+      <div class="prize bronze">
+        <div class="prize-place">🥉 3rd Place — Rising Star</div>
+        <div class="prize-amt">₦50K</div>
+        <div class="prize-name">Rising Innovator Award</div>
+        <div class="prize-list">
+          <div class="prize-item"><span class="pdot"></span>₦50,000 cash prize</div>
+          <div class="prize-item"><span class="pdot"></span>Quad community spotlight</div>
+          <div class="prize-item"><span class="pdot"></span>Certificate of merit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="label">Key Dates</div>
+    <h2 class="big">MARK YOUR<br>CALENDAR</h2>
+    <div class="rule"></div>
+    <div class="tl-wrap">
+      <div class="tl now"><div class="tl-d">April 1, 2026</div><div class="tl-e">Registration Opens</div><div class="tl-n">Pay ₦2,500 and submit your application today.</div><span class="tl-live">Open Now</span></div>
+      <div class="tl"><div class="tl-d">May 31, 2026</div><div class="tl-e">Registration Closes</div><div class="tl-n">Hard deadline. No late entries accepted after midnight.</div></div>
+      <div class="tl"><div class="tl-d">Early June</div><div class="tl-e">Shortlist Announced</div><div class="tl-n">Selected participants are notified and receive pitch guidelines.</div></div>
+      <div class="tl"><div class="tl-d">June 7, 2026</div><div class="tl-e">Competition Day</div><div class="tl-n">Pitch day.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg">
+  <div class="container">
+    <div class="label">The Process</div>
+    <h2 class="big">HOW IT<br>WORKS</h2>
+    <div class="rule"></div>
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><div><div class="step-h">Pay the Registration Fee</div><div class="step-p">Click "Register Now" and complete your ₦2,500 payment via Paystack. Copy your transaction reference.</div></div></div>
+      <div class="step"><div class="step-n">02</div><div><div class="step-h">Fill the Registration Form</div><div class="step-p">Come back to this page and complete all sections of the form below. Paste your Paystack reference in the final section.</div></div></div>
+      <div class="step"><div class="step-n">03</div><div><div class="step-h">Check Your Email</div><div class="step-p">Within minutes of submitting, you'll receive a confirmation email with your unique participant ID and all your details.</div></div></div>
+      <div class="step"><div class="step-n">04</div><div><div class="step-h">Prepare and Pitch</div><div class="step-p">Shortlisted participants receive pitch guidelines in early June. Prepare your idea, show up on June 7, and compete.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="section" id="register">
+  <div class="container">
+    <div class="label">Step 1 — Pay First</div>
+    <h2 class="big">SECURE<br>YOUR SPOT</h2>
+    <div class="rule"></div>
+    <div class="reg-split">
+      <div>
+        <div class="price-n">₦2,500</div>
+        <div class="price-l">One-time registration fee · Non-refundable</div>
+        <div class="reg-perks">
+          <div class="perk"><span class="perk-dot"></span>Compete for ₦350,000 in prizes</div>
+          <div class="perk"><span class="perk-dot"></span>Unique participant ID issued</div>
+          <div class="perk"><span class="perk-dot"></span>Access to the Quad Innovation community</div>
+          <div class="perk"><span class="perk-dot"></span>Official digital welcome kit</div>
+          <div class="perk"><span class="perk-dot"></span>Pitch coaching &amp; guidelines</div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:20px">Registration closes <strong style="color:var(--white)">May 31, 2026.</strong> Don't wait.</p>
+      </div>
+      <div>
+        <div class="pay-box">
+          <div class="pay-box-label">Pay to Unlock Registration</div>
+          <!-- !! REPLACE WITH YOUR PAYSTACK LINK !! -->
+          <a href="https://paystack.shop/pay/qg8678i2x4" class="pay-link-btn" target="_blank">Pay ₦2,500 via Paystack →</a>
+          <p class="pay-note">After payment, scroll down and fill the form below.<br>You'll need your Paystack transaction reference.</p>
+          <div class="pay-steps">
+            <div class="pay-s"><div class="pay-s-n">1</div><div><div class="pay-s-h">Click the button above</div><div class="pay-s-p">Secure Paystack payment page opens.</div></div></div>
+            <div class="pay-s"><div class="pay-s-n">2</div><div><div class="pay-s-h">Pay ₦2,500</div><div class="pay-s-p">Card, bank transfer, or USSD. Copy your transaction reference.</div></div></div>
+            <div class="pay-s"><div class="pay-s-n">3</div><div><div class="pay-s-h">Scroll down &amp; fill the form</div><div class="pay-s-p">Complete all sections and paste your reference at the end.</div></div></div>
+            <div class="pay-s"><div class="pay-s-n">4</div><div><div class="pay-s-h">Check your email</div><div class="pay-s-p">Confirmation with your participant ID arrives within minutes.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="section alt-bg" id="form">
+  <div class="container">
+    <div class="label">Step 2 — Complete Your Registration</div>
+    <h2 class="big">TELL US<br>ABOUT YOU</h2>
+    <div class="rule"></div>
+    <p class="lead">Already paid? Fill this form. A confirmation email goes to you and The Quad the moment you submit.</p>
+
+    <!-- Success screen (hidden until form is submitted) -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✅</div>
+      <div style="font-size:18px;font-weight:600;margin-bottom:8px">Registration confirmed!</div>
+      <div class="success-id-label">Your Participant ID</div>
+      <div class="success-id" id="successID">QI2026-001</div>
+      <p style="font-size:14px;color:var(--muted);margin-top:12px">A confirmation email is on its way to your inbox with all your details. Check your spam folder if you don't see it within 5 minutes.</p>
+    </div>
+
+    <div class="form-wrap" id="registrationForm">
+
+      <div class="form-block">
+        <div class="form-block-head"><div class="form-block-letter">A</div><div class="form-block-title">Personal Information</div></div>
+        <div class="fields">
+          <div><div class="flabel">Full Name *</div><input class="finput" id="fullName" type="text" placeholder="e.g. Aisha Balogun" required></div>
+          <div><div class="flabel">Phone Number *</div><input class="finput" id="phone" type="tel" placeholder="+234 800 000 0000" required></div>
+          <div><div class="flabel">Email Address *</div><input class="finput" id="email" type="email" placeholder="you@example.com" required></div>
+          <div><div class="flabel">Date of Birth *</div><input class="finput" id="dob" type="text" placeholder="DD / MM / YYYY" required></div>
+          <div class="field-full">
+            <div class="flabel">State of Origin *</div>
+            <select class="finput" id="state" required>
+              <option value="">Select your state</option>
+              <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>Abuja (FCT)</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <div class="form-block-head"><div class="form-block-letter">B</div><div class="form-block-title">School &amp; Academic Details</div></div>
+        <div class="fields">
+          <div class="field-full"><div class="flabel">Institution Name *</div><input class="finput" id="institution" type="text" placeholder="e.g. University of Lagos" required></div>
+          <div>
+            <div class="flabel">Institution Type *</div>
+            <select class="finput" id="institutionType" required>
+              <option value="">Select type</option><option>University</option><option>Polytechnic</option><option>College of Education</option><option>Not currently enrolled</option>
+            </select>
+          </div>
+          <div><div class="flabel">Faculty / Department</div><input class="finput" id="faculty" type="text" placeholder="e.g. Computer Science"></div>
+          <div>
+            <div class="flabel">Year of Study</div>
+            <select class="finput" id="yearOfStudy">
+              <option value="">Select year</option><option>100 Level / Year 1</option><option>200 Level / Year 2</option><option>300 Level / Year 3</option><option>400 Level / Year 4</option><option>500 Level +</option><option>Graduate / N/A</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <div class="form-block-head"><div class="form-block-letter">C</div><div class="form-block-title">Your Idea</div></div>
+        <div class="fields">
+          <div class="field-full"><div class="flabel">Project / Idea Name *</div><input class="finput" id="projectName" type="text" placeholder="Give your idea a name" required></div>
+          <div class="field-full"><div class="flabel">What problem does your idea solve? *</div><textarea class="finput" id="problem" rows="3" placeholder="Describe the problem in 2–3 sentences..." required></textarea></div>
+          <div class="field-full"><div class="flabel">How does your solution work? *</div><textarea class="finput" id="solution" rows="3" placeholder="Explain your solution simply..." required></textarea></div>
+          <div>
+            <div class="flabel">Category *</div>
+            <select class="finput" id="category" required>
+              <option value="">Select category</option><option>EdTech</option><option>FinTech</option><option>HealthTech</option><option>AgriTech</option><option>CleanTech</option><option>AI / Machine Learning</option><option>Social Impact</option><option>Other</option>
+            </select>
+          </div>
+          <div>
+            <div class="flabel">Project Stage</div>
+            <select class="finput" id="projectStage">
+              <option value="">Select stage</option><option>Just an idea</option><option>Research stage</option><option>Prototype / MVP built</option><option>Already launched</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <div class="form-block-head"><div class="form-block-letter">D</div><div class="form-block-title">Experience Level</div></div>
+        <div class="fields">
+          <div>
+            <div class="flabel">Tech Experience *</div>
+            <select class="finput" id="techExperience" required>
+              <option value="">Select level</option><option>Complete beginner</option><option>Some knowledge</option><option>Intermediate</option><option>Advanced</option>
+            </select>
+          </div>
+          <div>
+            <div class="flabel">Have you pitched before?</div>
+            <select class="finput" id="pitchedBefore">
+              <option>No, this is my first time</option><option>Yes, once or twice</option><option>Yes, multiple times</option>
+            </select>
+          </div>
+          <div class="field-full">
+            <div class="flabel">How did you hear about us?</div>
+            <select class="finput" id="heardFrom">
+              <option value="">Select source</option><option>Instagram</option><option>Twitter / X</option><option>WhatsApp</option><option>Friend or colleague</option><option>Lecturer</option><option>LinkedIn</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <div class="form-block-head"><div class="form-block-letter">E</div><div class="form-block-title">Payment &amp; Confirmation</div></div>
+        <div class="fields">
+          <div class="field-full"><div class="flabel">Paystack Transaction Reference *</div><input class="finput" id="paystackRef" type="text" placeholder="Paste your payment reference here" required></div>
+          <div class="field-full">
+            <div class="flabel" style="margin-bottom:12px">I confirm that:</div>
+            <div class="check-group">
+              <label class="check-row"><input type="checkbox" id="check1"> All information I have provided is accurate and truthful</label>
+              <label class="check-row"><input type="checkbox" id="check2"> I have successfully completed the ₦2,500 Paystack payment</label>
+              <label class="check-row"><input type="checkbox" id="check3"> I agree to The Quad Collective's competition terms and conditions</label>
+            </div>
+          </div>
+          <div class="field-full" style="margin-top:8px">
+            <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+              Submit Registration →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="fcta">
+  <h2>YOUR IDEA<br>DESERVES A<br><em>STAGE.</em></h2>
+  <p>Register for ₦2,500. Pitch in June. Win up to ₦200,000.</p>
+  <a href="#register" class="btn-main" style="font-size:15px;padding:17px 52px">Register Now</a>
+  <p class="fcta-deadline">Deadline: May 31, 2026 &nbsp;·&nbsp; Spots are limited</p>
+</section>
+
+<footer>
+  <div class="foot-brand"><strong>The Quad Collective</strong> &nbsp;·&nbsp; Quad Innovation 2026 &nbsp;·&nbsp; itsquadcollective@gmail.com</div>
+  <div class="foot-links">
+    <a href="#about">About</a><a href="#prizes">Prizes</a><a href="#timeline">Dates</a><a href="#register">Register</a>
+  </div>
+</footer>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ============================================================
+  //  !! IMPORTANT: Replace this URL with your server's address
+  //  When running locally:   http://localhost:3000/register
+  //  When deployed (Render): https://your-app.onrender.com/register
+  // ============================================================
+  const BACKEND_URL = 'http://localhost:3000/register';
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = `toast ${type} show`;
+    setTimeout(() => { toast.className = 'toast'; }, 5000);
+  }
+
+  async function handleSubmit() {
+    // Check all boxes are ticked
+    if (!document.getElementById('check1').checked ||
+        !document.getElementById('check2').checked ||
+        !document.getElementById('check3').checked) {
+      showToast('Please tick all three confirmation boxes before submitting.', 'error');
+      return;
+    }
+
+    // Collect all form values
+    const data = {
+      fullName:        document.getElementById('fullName').value.trim(),
+      phone:           document.getElementById('phone').value.trim(),
+      email:           document.getElementById('email').value.trim(),
+      dob:             document.getElementById('dob').value.trim(),
+      state:           document.getElementById('state').value,
+      institution:     document.getElementById('institution').value.trim(),
+      institutionType: document.getElementById('institutionType').value,
+      faculty:         document.getElementById('faculty').value.trim(),
+      yearOfStudy:     document.getElementById('yearOfStudy').value,
+      projectName:     document.getElementById('projectName').value.trim(),
+      problem:         document.getElementById('problem').value.trim(),
+      solution:        document.getElementById('solution').value.trim(),
+      category:        document.getElementById('category').value,
+      projectStage:    document.getElementById('projectStage').value,
+      techExperience:  document.getElementById('techExperience').value,
+      pitchedBefore:   document.getElementById('pitchedBefore').value,
+      heardFrom:       document.getElementById('heardFrom').value,
+      paystackRef:     document.getElementById('paystackRef').value.trim(),
+    };
+
+    // Check required fields
+    const required = { fullName:'Full Name', phone:'Phone Number', email:'Email Address',
+      dob:'Date of Birth', state:'State', institution:'Institution',
+      institutionType:'Institution Type', projectName:'Project Name',
+      problem:'Problem Description', solution:'Solution Description',
+      category:'Category', techExperience:'Tech Experience', paystackRef:'Paystack Reference' };
+
+    for (const [key, label] of Object.entries(required)) {
+      if (!data[key]) {
+        showToast(`Please fill in: ${label}`, 'error');
+        return;
+      }
+    }
+
+    // Disable button and show loading state
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Hide the form, show success screen
+        document.getElementById('registrationForm').style.display = 'none';
+        const screen = document.getElementById('successScreen');
+        screen.classList.add('show');
+        document.getElementById('successID').textContent = result.participantID;
+        screen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        showToast('Registration confirmed! Check your email.', 'success');
+      } else {
+        showToast(result.message || 'Something went wrong. Please try again.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Submit Registration →';
+      }
+
+    } catch (err) {
+      showToast('Could not reach the server. Please check your connection and try again.', 'error');
+      btn.disabled = false;
+      btn.textContent = 'Submit Registration →';
+    }
+  }
+</script>
+
+</body>
+</html>
