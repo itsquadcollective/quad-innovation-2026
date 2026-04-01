@@ -1,0 +1,24 @@
+# ============================================================
+#  QUAD INNOVATION 2026 — Environment Variables
+#  
+#  IMPORTANT RULES:
+#  1. Never share this file with anyone
+#  2. Never upload this file to GitHub
+#  3. Add ".env" to your .gitignore file
+#  4. On Render.com, you enter these values in their dashboard
+#     under Environment Variables — you never upload this file
+# ============================================================
+
+# The Gmail address you're sending FROM
+GMAIL_USER=your-gmail@gmail.com
+
+# Your Gmail App Password (NOT your normal Gmail password)
+# How to get one: myaccount.google.com → Security → 2-Step Verification → App Passwords
+# It looks like this: xxxx xxxx xxxx xxxx
+GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
+
+# The Quad's official email — confirmation copies go here
+QUAD_EMAIL=hello@thequadcollective.com
+
+# Port (leave as 3000 for local, Render sets this automatically when live)
+PORT=3000
